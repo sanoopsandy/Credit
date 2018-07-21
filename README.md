@@ -41,4 +41,4 @@
 
 # Download
 
-<a href="https://github.com/sanoopsandy/Credit/apk/credit_v1.0.apk">Click here to download!</a>
+<a href="https://github.com/sanoopsandy/Credit/tree/master/apk/credit_v1.0.apk">Click here to download!</a>
