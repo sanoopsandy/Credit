@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Credit</string>
+    <string name="cvv">CVV</string>
+
+    <string name="credit_card_number">Credit Card Number</string>
+    <string name="enter_your_credit_card_number">Enter your credit card Number</string>
+    <string name="expiry_month">Expiry Month</string>
+    <string name="month">Month</string>
+    <string name="expiry_year">Expiry Year</string>
+    <string name="year">Year</string>
+    <string name="account_holder_name">Account holder Name</string>
+    <string name="enter_your_name">Enter your Name</string>
+    <string name="result">Submitted successfully your Request id : %1$s</string>
+    <string name="error">Please enter valid data.</string>
+    <string name="year_error">Please enter a year > 17.</string>
+</resources>
