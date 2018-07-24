@@ -61,11 +61,11 @@ class CreditFormActivity : AppCompatActivity() {
     }
 
     private fun observeResponse() {
-        viewModel.postDataRepository.observe(this, Observer<DataResult<JsonElement>> { result ->
+        viewModel.submitData.observe(this, Observer<DataResult<JsonElement>> { result ->
             when (result) {
                 is DataResult.Progress -> {
                     hideKeyboard()
-                    progress.visibilityToggle(false)
+                    progress.visibilityToggle(result.loading)
                 }
                 is DataResult.Success -> {
                     val response = result.data

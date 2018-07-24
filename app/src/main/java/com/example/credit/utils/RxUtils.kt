@@ -104,3 +104,31 @@ fun Activity.hideKeyboard() {
     }
     imm.hideSoftInputFromWindow(view.windowToken, 0)
 }
+
+
+/**
+ * Function to handle loading logic and push the value forward
+ * */
+fun <T> MutableLiveData<DataResult<T>>.failure(e: Throwable) {
+    with(this) {
+        loading(false)
+        value = (DataResult.failure(e))
+    }
+}
+
+/**
+ * Function to handle loading logic and push the value forward
+ * */
+fun <T> MutableLiveData<DataResult<T>>.success(t: T) {
+    with(this) {
+        loading(false)
+        value = (DataResult.success(t))
+    }
+}
+
+/**
+ * Function to push the loading status to the observing outcome
+ * */
+fun <T> MutableLiveData<DataResult<T>>.loading(isLoading: Boolean) {
+    value = DataResult.loading(isLoading)
+}

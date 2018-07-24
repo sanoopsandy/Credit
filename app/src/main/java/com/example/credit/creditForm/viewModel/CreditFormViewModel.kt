@@ -4,12 +4,9 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.ViewModel
 import com.example.credit.core.di.DIHandler
 import com.example.credit.core.networking.DataResult
-import com.example.credit.utils.toLiveData
 import com.example.credit.creditForm.dataManager.CreditModel
-import com.example.credit.creditForm.dataManager.CreditResponse
 import com.example.credit.creditForm.dataManager.CreditRepository
 import com.google.gson.JsonElement
-import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
 class CreditFormViewModel : ViewModel() {
@@ -21,20 +18,16 @@ class CreditFormViewModel : ViewModel() {
     @Inject
     lateinit var repo: CreditRepository
 
-    @Inject
-    lateinit var compositeDisposable: CompositeDisposable
-
     /*
-    * Converting publish object to live data to observe updates in the result
+    * Observe LiveData
     * */
-    val postDataRepository: LiveData<DataResult<JsonElement>> by lazy {
-        repo.postSubmitCreditModelDataResult.toLiveData(compositeDisposable)
+    val submitData: LiveData<DataResult<JsonElement>> by lazy {
+        repo.creditLiveData
     }
 
     fun submitCreditInfo(creditModel: CreditModel) {
-        /*if (postDataRepository.value == null){
-
-        }*/
+//        if (submitData.value == null) {
+//        }
         repo.submitCreditInfo(creditModel)
     }
 
@@ -43,7 +36,6 @@ class CreditFormViewModel : ViewModel() {
     * */
     override fun onCleared() {
         super.onCleared()
-        compositeDisposable.clear()
         DIHandler.destroyCreditComponent()
     }
 
