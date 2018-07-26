@@ -68,14 +68,14 @@ class CreditFormActivity : AppCompatActivity() {
                     progress.visibilityToggle(result.loading)
                 }
                 is DataResult.Success -> {
-                    val response = result.data
-                    val json = response.asJsonObject
-                    val gson = Gson()
+                    val json = result.data.asJsonObject
                     if (json.get("success").asBoolean) {
-                        val model = gson.fromJson(json, CreditResponse::class.java)
-                        txtResult.setTextColor(Color.GREEN)
-                        txtResult.visibility = View.VISIBLE
-                        txtResult.text = getString(R.string.result, model.data.requestId.toString())
+                        val model = Gson().run { fromJson(json, CreditResponse::class.java) }
+                        with(txtResult) {
+                            setTextColor(Color.GREEN)
+                            visibility = View.VISIBLE
+                            text = getString(R.string.result, model.data.requestId.toString())
+                        }
                     } else {
                         txtResult.setTextColor(Color.RED)
                         txtResult.visibility = View.VISIBLE
